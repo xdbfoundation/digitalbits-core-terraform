@@ -15,6 +15,7 @@ resource "aws_s3_bucket_object" "object" {
   depends_on = [
     aws_s3_bucket.toml
   ]
+  acl           = "public-read"
   force_destroy = true
   bucket = var.bucket_name
   key    = "/.well-known/digitalbits.toml"
