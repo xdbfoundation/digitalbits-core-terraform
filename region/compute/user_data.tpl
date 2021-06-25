@@ -17,7 +17,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core/setu
 curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-frontier/setup.deb.sh' | sudo -E bash
 curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-friendbot/setup.deb.sh' | sudo -E bash
 curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core-prometheus-exporter/setup.deb.sh' | sudo -E bash
-sudo apt-get install digitalbits-frontier digitalbits-friendbot digitalbits-core=1.0.7-beta.3  digitalbits-core-prometheus-exporter -y
+sudo apt-get install digitalbits-frontier digitalbits-friendbot digitalbits-core=1.0.28  digitalbits-core-prometheus-exporter -y
 sudo sed -i 's/testnet/livenet/g' /etc/datadog-agent/conf.d/prometheus.d/conf.yaml
 cat << EOF > /etc/digitalbits.cfg
 LOG_FILE_PATH="/var/log/digitalbits-core.log"
