@@ -80,6 +80,19 @@ ADDRESS = "35.181.0.80:11625"
 HISTORY = "curl -sf https://history.livenet.digitalbits.io/fra-1/{0} -o {1}"
 HOME_DOMAIN = "livenet.digitalbits.io"
 
+[[VALIDATORS]]
+NAME="sgp-1"
+HOME_DOMAIN="livenet.digitalbits.io"
+PUBLIC_KEY="GAH63EU4HJANIP3W6UNCJ2YKOYRZQJHYWQBKZGXVZK6UFNQ4SULCKWLC"
+ADDRESS="sgp-1.livenet.digitalbits.io"
+HISTORY="curl -sf https://history.livenet.digitalbits.io/sgp-1/{0} -o {1}"
+[[VALIDATORS]]
+NAME="irl-1"
+HOME_DOMAIN="livenet.digitalbits.io"
+PUBLIC_KEY="GAD3IYRUDJN7AVE4VUUQQO74AWFKLEFKB5BFUNOFM6KA4WH5G23GUQ7W"
+ADDRESS="irl-1.livenet.digitalbits.io"
+HISTORY="curl -sf https://history.livenet.digitalbits.io/irl-1/{0} -o {1}"
+
 [[HOME_DOMAINS]]
 HOME_DOMAIN = "livenet.zytara.com"
 QUALITY = "HIGH"
@@ -132,6 +145,32 @@ PUBLIC_KEY = "GAKPT7BFXX224DJ7KB7V22LTJ6WH4SRQSJ3VLW324FIVFB2P6VW2OF76"
 ADDRESS = "35.157.33.78:11625"
 HISTORY = "curl -sf https://history.livenet.zytara.com/livenet/deu/{0} -o {1}"
 HOME_DOMAIN = "livenet.zytara.com"
+
+
+[[HOME_DOMAINS]]
+HOME_DOMAIN="digitalbits.stably.io"
+QUALITY="HIGH"
+
+[[VALIDATORS]]
+NAME="stably-use1"
+HOME_DOMAIN="digitalbits.stably.io"
+ADDRESS="use1-1.digitalbits.stably.io"
+PUBLIC_KEY="GDF2PZ6TQON6V6BBV5QUQ77LNQU6EZNG7XDJ6BZQFANMVEI7KUKFQJCI"
+HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-east-1/{0} -o {1}"
+
+[[VALIDATORS]]
+NAME="stably-usw1"
+HOME_DOMAIN="digitalbits.stably.io"
+ADDRESS="usw1-1.digitalbits.stably.io"
+PUBLIC_KEY="GCKGIKHN3ABZBSA3HVVBLO7DBWHD6UYZ3CRY4SAGQVGWEZ5E6VP6OT2U"
+HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-west-1/{0} -o {1}"
+
+[[VALIDATORS]]
+NAME="stably-usw2"
+HOME_DOMAIN="digitalbits.stably.io"
+ADDRESS="usw2-1.digitalbits.stably.io"
+PUBLIC_KEY="GD5M33AQCGCFCVQCJAIZQFGUHBBUQQVD52HX3ISBPWQSMTAMKRJ2CTX3"
+HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-west-2/{0} -o {1}"
 
 EOF
 
