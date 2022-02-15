@@ -14,19 +14,16 @@ sudo chmod a+rwx /etc/iptables/rules.v4
 sudo iptables-save > /etc/iptables/rules.v4
 #DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${dd_api_key} DD_SITE="${dd_site}" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
 curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core/setup.deb.sh' | sudo -E bash
-curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-frontier/setup.deb.sh' | sudo -E bash
-curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-friendbot/setup.deb.sh' | sudo -E bash
 curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core-prometheus-exporter/setup.deb.sh' | sudo -E bash
-sudo apt-get install digitalbits-frontier digitalbits-friendbot digitalbits-core=1.0.28  digitalbits-core-prometheus-exporter -y
+sudo apt-get install digitalbits-core  digitalbits-core-prometheus-exporter -y
 sudo sed -i 's/testnet/livenet/g' /etc/datadog-agent/conf.d/prometheus.d/conf.yaml
 cat << EOF > /etc/digitalbits.cfg
 LOG_FILE_PATH="/var/log/digitalbits-core.log"
 BUCKET_DIR_PATH="/var/history/buckets"
 RUN_STANDALONE=false
-UNSAFE_QUORUM=true
-FAILURE_SAFETY=0
-CATCHUP_COMPLETE=false
-CATCHUP_RECENT=1024
+UNSAFE_QUORUM=false
+FAILURE_SAFETY=1
+CATCHUP_COMPLETE=true
 NODE_HOME_DOMAIN="${domain_name}"
 NODE_SEED="${node.secret_seed} self"
 NODE_IS_VALIDATOR=true
@@ -36,7 +33,7 @@ PUBLIC_HTTP_PORT=true
 NETWORK_PASSPHRASE="${network_passphare}"
 FEE_PASSPHRASE="${fee_passphrase}"
 PEER_PORT=11625
-KNOWN_CURSORS=["HORIZON", "FRONTIER"]
+KNOWN_CURSORS=["FRONTIER"]
 
 [[HOME_DOMAINS]]
 HOME_DOMAIN="${domain_name}"
@@ -86,6 +83,7 @@ HOME_DOMAIN="livenet.digitalbits.io"
 PUBLIC_KEY="GAH63EU4HJANIP3W6UNCJ2YKOYRZQJHYWQBKZGXVZK6UFNQ4SULCKWLC"
 ADDRESS="sgp-1.livenet.digitalbits.io"
 HISTORY="curl -sf https://history.livenet.digitalbits.io/sgp-1/{0} -o {1}"
+
 [[VALIDATORS]]
 NAME="irl-1"
 HOME_DOMAIN="livenet.digitalbits.io"
@@ -159,6 +157,13 @@ PUBLIC_KEY="GDF2PZ6TQON6V6BBV5QUQ77LNQU6EZNG7XDJ6BZQFANMVEI7KUKFQJCI"
 HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-east-1/{0} -o {1}"
 
 [[VALIDATORS]]
+NAME="stably-use2"
+HOME_DOMAIN="digitalbits.stably.io"
+PUBLIC_KEY="GAJAEHVWS2VVXHJEV5JLJMVUER3UKCOOCM6FQE3AU7P7W5QFIH5RQUHV"
+ADDRESS="use2-1.digitalbits.stably.io"
+HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-east-2/{0} -o {1}"
+
+[[VALIDATORS]]
 NAME="stably-usw1"
 HOME_DOMAIN="digitalbits.stably.io"
 ADDRESS="usw1-1.digitalbits.stably.io"
@@ -174,16 +179,10 @@ HISTORY="curl -sf https://history.digitalbits.stably.io/livenet/us-west-2/{0} -o
 
 EOF
 
-cat << EOF > upgrade.sh
-#!/bin/bash
-sudo sed -i.bak 's/UNSAFE_QUORUM=true/UNSAFE_QUORUM=false/; s/FAILURE_SAFETY=0/FAILURE_SAFETY=1/; s/QUALITY="MEDIUM"/QUALITY="HIGH"/; s/^#//' /etc/digitalbits.cfg
-sudo sleep 5
-sudo systemctl restart digitalbits-core
-EOF
 # --- commands to start new digitalbits node
 sudo digitalbits-core --conf /etc/digitalbits.cfg new-db
 sudo digitalbits-core --conf /etc/digitalbits.cfg new-hist local
 sudo systemctl enable --now digitalbits-core
-at now +10 minutes -f upgrade.sh
+
 #sudo systemctl enable --now digitalbits-core-prometheus-exporter
 #sudo systemctl enable --now datadog-agent

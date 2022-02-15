@@ -166,3 +166,42 @@ module "eu-north-1" {
     aws = aws.eu-north-1
   }
 }
+
+# --- Canada ---
+module "ca-central-1" {
+  source = "./region"
+  # --- VPC ---
+  vpc_cidr = local.vpc_cidr
+
+  # --- DNS ---
+  domain_name = local.domain_name
+  zone_id     = local.zone_id
+  iso         = "can"
+
+  # --- EC2 ---
+  instance_count       = 1
+  volume_size          = local.volume_size
+  instance_type        = local.instance_type
+  iam_instance_profile = local.iam_instance_profile
+
+  # --- digitalbits.cfg ---
+  keys              = local.keys
+  bucket_name       = local.bucket_name
+  network_passphare = local.network_passphare
+  fee_passphrase    = local.fee_passphrase
+
+  # --- Datadog ---
+  dd_api_key = local.dd_api_key
+  dd_site    = local.dd_site
+
+  # --- RDS ---
+  db_storage        = local.db_storage
+  db_storage_max    = local.db_storage_max
+  db_engine_version = local.db_engine_version
+  instance_class    = local.instance_class
+  skip_db_snapshot  = local.skip_db_snapshot
+
+  providers = {
+    aws = aws.ca-central-1
+  }
+}

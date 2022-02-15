@@ -15,3 +15,4 @@ variable "DD_SITE" {
 variable "secret_deu" {}
 variable "secret_irl" {}
 variable "secret_swe" {}
+variable "secret_can" {}

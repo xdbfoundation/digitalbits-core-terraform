@@ -63,6 +63,14 @@ locals {
       history_get  = "curl -sf https://${local.history_zone_record}/livenet/swe/{0} -o {1}"
       history_put  = "aws s3 cp {0} s3://${local.bucket_name}/livenet/swe/{1} --region us-east-1"
     }
+    "can" = {
+      secret_seed  = var.secret_can
+      display_name = join(" ", [local.org_name, "Canada"])
+      public       = "SAEJDFFDVM2T4YOG57OQXCK7QLPRWIYVQWMYRGCWZH7JNIBIUTRHUOVL"
+      history      = "https://${local.history_zone_record}/livenet/can/"
+      history_get  = "curl -sf https://${local.history_zone_record}/livenet/can/{0} -o {1}"
+      history_put  = "aws s3 cp {0} s3://${local.bucket_name}/livenet/can/{1} --region us-east-1"
+    }
   }
 }
 
