@@ -13,9 +13,12 @@ sudo iptables --append RATE-LIMIT --jump REJECT
 sudo chmod a+rwx /etc/iptables/rules.v4
 sudo iptables-save > /etc/iptables/rules.v4
 #DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=${dd_api_key} DD_SITE="${dd_site}" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core/setup.deb.sh' | sudo -E bash
-curl -1sLf 'https://dl.cloudsmith.io/public/xdb-foundation/digitalbits-core-prometheus-exporter/setup.deb.sh' | sudo -E bash
-sudo apt-get install digitalbits-core  digitalbits-core-prometheus-exporter -y
+DIGITALBITS_CORE_VERSION=$(curl -s "https://api.github.com/repos/xdbfoundation/DigitalBits/releases?per_page=50" | jq -r '[.[] | select(.name | contains("beta") | not) | .name][0]')
+DIGITALBITS_PROMETHEUS_VERSION=$(curl -s "https://api.github.com/repos/xdbfoundation/digitalbits-core-prometheus-exporter/releases?per_page=50" | jq -r '[.[] | select(.name | contains("beta") | not) | .name][0]')
+curl -Lo digitalbits-core.deb "https://github.com/xdbfoundation/DigitalBits/releases/download/${DIGITALBITS_CORE_VERSION}/digitalbits-core_${DIGITALBITS_CORE_VERSION}_amd64.deb"
+curl -Lo digitalbits-core-prometheus-exporter.deb "https://github.com/xdbfoundation/digitalbits-core-prometheus-exporter/releases/download/${DIGITALBITS_PROMETHEUS_VERSION}/digitalbits-core-prometheus-exporter_${DIGITALBITS_PROMETHEUS_VERSION}_amd64.deb"
+sudo dpkg -i digitalbits-core.deb
+sudo dpkg -i digitalbits-core-prometheus-exporter.deb
 sudo sed -i 's/testnet/livenet/g' /etc/datadog-agent/conf.d/prometheus.d/conf.yaml
 cat << EOF > /etc/digitalbits.cfg
 LOG_FILE_PATH="/var/log/digitalbits-core.log"
