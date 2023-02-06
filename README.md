@@ -6,17 +6,6 @@ For successfull apply in the file `terraform.tfvars` specify following variables
 
 Hosted zone in AWS Route53 will be created with this name and ACM certificate for this domain. During `terraform apply` DNS validation will be initiated and you will have in total 45 minutes to update NS records in your current domain registar and changes to be propageted and ACM certificates to be validated by AWS.
 
-`DD_API_KEY` (optional) - DataDog api key, for example 
-
-        DD_API_KEY  = "20725dc8be182ec76c8e76eb8f2e896f"
-
-If you want blockchain node metrics to be exported to [DataDog](https://datadoghq.com), please, specify your API key and uncomment in file `region/compute/user_data.tpl` following lines 
-
-    #DD_AGENT_MAJOR_VERSION=7 DD_API_KEY ...
-    #sudo systemctl enable --now digitalbits-core-prometheus-exporter
-    #sudo systemctl enable --now datadog-agent
-
-Otherwise, leave unchanged.
 
 For each node generate public/private keypair either using command `digitalbits-core gen-seed` or pressing button `Generate keypair` on site https://developer.digitalbits.io/lab/#account-creator?network=public
 

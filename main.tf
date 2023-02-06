@@ -73,10 +73,6 @@ module "eu-central-1" {
   network_passphare = local.network_passphare
   fee_passphrase    = local.fee_passphrase
 
-  # --- Datadog ---
-  dd_api_key = local.dd_api_key
-  dd_site    = local.dd_site
-
   # --- RDS ---
   db_storage        = local.db_storage
   db_storage_max    = local.db_storage_max
@@ -111,10 +107,6 @@ module "eu-west-1" {
   bucket_name       = local.bucket_name
   network_passphare = local.network_passphare
   fee_passphrase    = local.fee_passphrase
-
-  # --- Datadog ---
-  dd_api_key = local.dd_api_key
-  dd_site    = local.dd_site
 
   # --- RDS ---
   db_storage        = local.db_storage
@@ -151,10 +143,6 @@ module "eu-north-1" {
   network_passphare = local.network_passphare
   fee_passphrase    = local.fee_passphrase
 
-  # --- Datadog ---
-  dd_api_key = local.dd_api_key
-  dd_site    = local.dd_site
-
   # --- RDS ---
   db_storage        = local.db_storage
   db_storage_max    = local.db_storage_max
@@ -189,10 +177,6 @@ module "ca-central-1" {
   bucket_name       = local.bucket_name
   network_passphare = local.network_passphare
   fee_passphrase    = local.fee_passphrase
-
-  # --- Datadog ---
-  dd_api_key = local.dd_api_key
-  dd_site    = local.dd_site
 
   # --- RDS ---
   db_storage        = local.db_storage

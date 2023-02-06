@@ -25,8 +25,6 @@ resource "aws_instance" "livenet_node" {
     known_peers       = jsonencode([for k, v in var.keys : join(".", [join("-", [k, 1]), var.domain_name]) if k != var.iso])
     bucket_name       = var.bucket_name
     validators        = { for k, v in var.keys : k => v if k != var.iso }
-    dd_api_key        = var.dd_api_key
-    dd_site           = var.dd_site
   })
 
   lifecycle {

@@ -8,14 +8,10 @@ locals {
   instance_type        = "m5.large"
   iam_instance_profile = module.role.iam_instance_profile
 
-  # --- Datadog ---
-  dd_api_key = var.DD_API_KEY
-  dd_site    = var.DD_SITE
-
   # --- RDS ---
   db_storage        = 80
   db_storage_max    = 1000
-  db_engine_version = "12.5"
+  db_engine_version = "12.13"
   instance_class    = "db.t3.medium"
   skip_db_snapshot  = true
 

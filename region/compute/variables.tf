@@ -23,7 +23,3 @@ variable "db_username" {}
 variable "db_password" {}
 variable "network_passphare" {}
 variable "fee_passphrase" {}
-
-# --- for Datadog ---
-variable "dd_api_key" {}
-variable "dd_site" {}

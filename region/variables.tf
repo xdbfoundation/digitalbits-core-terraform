@@ -22,9 +22,6 @@ variable "fee_passphrase" {}
 variable "keys" {}
 variable "bucket_name" {}
 
-variable "dd_api_key" {}
-variable "dd_site" {}
-
 # --- DNS ---
 variable "iso" {}
 variable "domain_name" {}

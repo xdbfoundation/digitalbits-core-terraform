@@ -54,8 +54,6 @@ module "compute" {
   network_passphare = var.network_passphare
   fee_passphrase    = var.fee_passphrase
   bucket_name       = var.bucket_name
-  dd_api_key        = var.dd_api_key
-  dd_site           = var.dd_site
 }
 
 module "dns" {
