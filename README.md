@@ -4,7 +4,7 @@ For successfull apply in the file `terraform.tfvars` specify following variables
     
         domain_name = "livenet.mycompany.com" 
 
-Hosted zone in AWS Route53 will be created with this name and ACM certificate for this domain. During `terraform apply` DNS validation will be initiated and you will have in total 45 minutes to update NS records in your current domain registar and changes to be propageted and ACM certificates to be validated by AWS.
+Hosted zone in AWS Route53 will be created with this name and ACM certificate for this domain. During `terraform apply` DNS validation will be initiated and you will have in total 45 minutes to update NS records in your current domain registar and changes to be propageted and ACM certificates to be validated by AWS. Go to Route53 domain zone, copy NS records and put into your domain's records.
 
 
 For each node generate public/private keypair either using command `digitalbits-core gen-seed` or pressing button `Generate keypair` on site https://developer.digitalbits.io/lab/#account-creator?network=public
